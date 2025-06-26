@@ -62,7 +62,8 @@ if uploaded_file:
                 # Download forecast
                 st.subheader("📥 Download Forecast")
                 forecast_download = forecast[["ds", "yhat", "yhat_lower", "yhat_upper"]]
-                forecast_download.rename(columns={"ds": "date"}, inplace=True)
+                forecast_download = forecast_download.rename(columns={"ds": "date"})
+
                 csv_buffer = BytesIO()
                 forecast_download.to_csv(csv_buffer, index=False)
                 st.download_button(
